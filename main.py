@@ -51,10 +51,11 @@ class CombineImage:
         return True
 
 
-Opacity_percent = 40  # Example opacity percentage provided by the user
-Output_path = "overlay_image.png"
-Image1_path = "image1.png"
-Image2_path = "image2.png"
-comb = CombineImage(Image1_path, Image2_path)
-output = comb.overlay(Output_path, Opacity_percent)
-print(output)
+if __name__ == "__main__":
+    Opacity_percent = 40  # Example opacity percentage provided by the user
+    Output_path = "overlay_image.png"
+    Image1_path = "image1.png"
+    Image2_path = "image2.png"
+    comb = CombineImage(Image1_path, Image2_path)
+    output = comb.overlay(Output_path, Opacity_percent)
+    print(output)
