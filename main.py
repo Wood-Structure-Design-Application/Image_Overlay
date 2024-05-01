@@ -10,14 +10,14 @@ class CombineImage:
         self.image_path1 = image_path1
         self.image_path2 = image_path2
 
-    def point(self):
+    def point(self, color_range):
 
         color_point_finder = ColorPointFinder(self.image_path2)
         red_points, point2_image2 = color_point_finder.find_points()
 
         color_point_finder_blue = ColorPointFinder(self.image_path1)
         try:
-            blue_points, point2_image1 = color_point_finder_blue.find_points(color_name="blue")
+            blue_points, point2_image1 = color_point_finder_blue.find_points("custom", color_range, color_range)
         except cv2.error:
             print(cv2.error)
             return None, None, None
@@ -31,10 +31,10 @@ class CombineImage:
             print("Red points not found.")
             return None, None, None
 
-    def overlay(self, output_path, opacity_percent):
+    def overlay(self, output_path, opacity_percent, color_range=None):
 
         overlay = ImageOverlay(self.image_path1, self.image_path2, output_path, opacity=opacity_percent)
-        scale, point2_image1, point2_image2 = self.point()
+        scale, point2_image1, point2_image2 = self.point(color_range)
         if not scale:
             return False
         # Example points for demonstration, replace with your logic to find points
