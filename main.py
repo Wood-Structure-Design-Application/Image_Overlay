@@ -1,8 +1,39 @@
 import cv2
-import numpy as np
+import sys
+import os
+
+# Get the directory where this script is located
+script_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Find the parent and grandparent directories
+parent_directory = os.path.dirname(script_directory)
+grandparent_directory = os.path.dirname(parent_directory)
+
+# Print directories for verification (optional)
+print(f"Script Directory: {script_directory}")
+print(f"Parent Directory: {parent_directory}")
+print(f"Grandparent Directory: {grandparent_directory}")
+
+# Add the directories to sys.path
+if script_directory not in sys.path:
+    sys.path.append(script_directory)
+
+if parent_directory not in sys.path:
+    sys.path.append(parent_directory)
+
+if grandparent_directory not in sys.path:
+    sys.path.append(grandparent_directory)
+
+# Print sys.path to verify (optional)
+print("Updated sys.path:")
+for path in sys.path:
+    print(path)
+
+# Import the modules
 from Distance import PointDistanceCalculator
 from FInd_point import ColorPointFinder
 from Overlay import ResizeProcessor, TranslateProcessor, ImageOverlay
+
 
 
 class CombineImage:
