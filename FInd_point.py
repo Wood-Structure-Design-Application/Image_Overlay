@@ -33,6 +33,7 @@ class ColorPointFinder:
                 cy = int(M["m01"] / M["m00"])
                 points.append((cx, cy))
 
+        points.sort(key=lambda item: item[0])
         if len(points) >= 2:
             bluex = []
             for i in points:
